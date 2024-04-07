@@ -1,0 +1,4 @@
+---
+- name: Install Kerbrute
+  ansible.builtin.command: go install github.com/ropnop/kerbrute@master
+  register: output

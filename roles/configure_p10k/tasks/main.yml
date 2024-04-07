@@ -1,0 +1,60 @@
+---
+- name: Installing Powerlevel10k
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.location }}"
+  loop:
+    - {repo: "https://github.com/romkatv/powerlevel10k.git", location: "~/.oh-my-zsh/custom/themes/powerlevel10k"}
+  tags: 
+    - p10k
+    - never
+
+- name: Update fonts from git
+  ansible.builtin.git:
+    repo: "https://github.com/romkatv/powerlevel10k-media"
+    dest: "/tmp/fonts"
+    depth: 1
+    force: yes
+  tags: 
+    - p10k
+    - never
+
+- name: "Select fonts to install"
+  ansible.builtin.find:
+    recurse: yes
+    use_regex: yes
+    paths: "/tmp/fonts"
+    patterns: '^MesloLGS NF .*\.ttf$'
+  register: fonts_to_install
+  tags: 
+    - p10k
+    - never
+
+#- debug: var=fonts_to_install
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.local/share/fonts"
+    state: directory
+  tags: 
+    - p10k
+    - never
+
+- name: "Copy fonts"
+  ansible.builtin.copy:
+    dest: "{{ ansible_env.HOME }}/.local/share/fonts/{{ item.path | basename }}"
+    src: "{{ item.path }}"
+    remote_src: yes
+  loop: "{{ fonts_to_install.files }}"
+  notify:
+    - update font cache
+  tags: 
+    - p10k
+    - never
+
+- name: "Copying Zsh Config"
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/.zshrc"
+    dest: "{{ ansible_env.HOME }}"
+  tags: 
+    - p10k
+    - never

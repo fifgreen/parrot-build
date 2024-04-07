@@ -1,0 +1,27 @@
+---
+- name: Updating APT repo cache
+  become: true
+  become_method: ansible.builtin.sudo
+  ansible.builtin.apt:
+    update_cache: true
+    force_apt_get: true
+    cache_valid_time: 3600
+
+- name: Upgrade all packages
+  become: true
+  become_method: ansible.builtin.sudo
+  ansible.builtin.apt:
+    upgrade: true
+    force_apt_get: true
+
+- name: Installing Packages
+  become: true
+  become_method: ansible.builtin.sudo
+  ansible.builtin.package:
+    name:
+      - jq
+      - pipx
+      - ntpdate
+      - flameshot
+      - exiftool
+    state: latest

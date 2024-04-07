@@ -1,0 +1,19 @@
+---
+- name: "Installing Oh My Zsh"
+  ansible.builtin.shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  tags: 
+    - ohmyzsh
+    - never
+  register: p
+  when: p.stat.isdir is defined and not p.stat.exist
+
+- name: "Installing oh-my-zsh plugins"
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.location }}"
+  loop:
+    - {repo: "https://github.com/zsh-users/zsh-syntax-highlighting.git", location: "~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"}
+    - {repo: "https://github.com/zsh-users/zsh-autosuggestions", location: "~/.oh-my-zsh/custom/plugins/zsh-autosuggestions"}
+  tags: 
+    - ohmyzsh
+    - never

@@ -1,0 +1,33 @@
+---
+- name: "Installing tools from Gems"
+  community.general.gem:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - logger
+    - stringio
+    - winrm
+    - builder
+    - erubi
+    - gssapi
+    - gyoku
+    - httpclient
+    - logging
+    - little-plugger
+    - nori
+    - rubyntlm
+    - winrm-fs
+    - evil-winrm
+  become: true
+  become_method: ansible.builtin.sudo
+
+- name: "Installing colorls"
+  community.general.gem:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - colorls
+
+  tags:
+    - colorls
+    - never

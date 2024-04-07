@@ -1,21 +1,29 @@
 ---
+
 - name: "Customizing Parrot"
   hosts: localhost
   connection: local
   roles:
-    - role: "roles/install-tools"
-    - role: "roles/configure-tmux"
-    - role: "roles/customize-terminal"
-    - role: "roles/customize-browser"
-    - role: "roles/configure-logging"
-    - role: "roles/configure-system"
+    - role: install_tools
+    - role: configure_tmux
+    - role: customize_terminal
+    - role: customize_browser
+    - role: configure_logging
+    - role: configure_system
     - role: gantsign.visual-studio-code
       users:
-        - username: "{{ ansible_user_id }}" 
+        - username: "{{ ansible_user_id }}"
           visual_studio_code_extensions:
             - streetsidesoftware.code-spell-checker
             - ms-python.python
             - DEVSENSE.phptools-vscode
-            - GitHub.copilot
-            - snyk-security.snyk-vulnerability-scanner
-
+    - role: configure_zsh
+      tags: zsh
+    - role: configure_ohmyzsh
+      tags: ohmyzsh
+    - role: configure_p10k
+      tags: p10k
+    - role: configure_draculatmux
+      tags: draculatmux
+    - role: customize_terminal_dracula
+      tags: draculamate

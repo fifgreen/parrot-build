@@ -1,0 +1,10 @@
+/*.retry
+/playbooks/*.retry
+/playbooks/test.yml
+/tags
+vaultpass
+
+!roles/requirements.yml
+.vault-pass
+.idea
+venv/*

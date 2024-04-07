@@ -1,0 +1,16 @@
+[/]
+allow-bold=false
+background-color='#28282A2A3636'
+background-darkness=0.90784313725490196
+background-type='transparent'
+bold-color='#000000000000'
+font='MesloLGS NF 12'
+foreground-color='#F8F8F8F8F2F2'
+palette='#262626262626:#E3E35656A7A7:#4242E6E66C6C:#E4E4F3F34A4A:#9B9B6B6BDFDF:#E6E647474747:#7575D7D7ECEC:#EFEFA5A55454:#7A7A7A7A7A7A:#FFFF7979C6C6:#5050FAFA7B7B:#F1F1FAFA8C8C:#BDBD9393F9F9:#FFFF55555555:#8B8BE9E9FDFD:#FFFFB8B86C6C'
+scrollback-lines=16384
+scrollback-unlimited=true
+scrollbar-position='right'
+title='Parrot Terminal'
+use-system-font=false
+use-theme-colors=false
+visible-name='Dracula'

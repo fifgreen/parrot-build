@@ -1,0 +1,32 @@
+---
+- name: "Copy BashRC"
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/.bashrc"
+    dest: "{{ ansible_env.HOME }}"
+
+- name: "Read current mate terminal profiles"
+  community.general.dconf:
+    key: "/org/mate/terminal/global/profile-list"
+    state: "read"
+  register: "profile_list"
+
+- name: "profile_list was not set, setting"
+  ansible.builtin.set_fact:
+    profile_list: 
+      value: '["default"]'
+  when: profile_list.value is none
+
+- name: "Adding our profile"
+  ansible.builtin.set_fact:
+    new_profile_list: "{{ profile_list.value | regex_replace(']$', \", 'Laptop']\") }}"
+
+- name: "Writing updated profile list"
+  community.general.dconf:
+    key: "/org/mate/terminal/global/profile-list"
+    value: "{{ new_profile_list }}"
+  when: "'Laptop' not in profile_list.value"
+
+- name: "Restoring Video Profile from Dump"
+  ansible.builtin.shell:
+    cmd: "dconf load /org/mate/terminal/profiles/Laptop/ < {{ role_path }}/files/dconf-dump-video"
+  when: "'Laptop' not in profile_list.value"

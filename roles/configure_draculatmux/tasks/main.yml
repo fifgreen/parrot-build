@@ -1,0 +1,18 @@
+---
+- name: "Installing Tmux Dracula Theme"
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.location }}"
+  loop:
+    - {repo: "https://github.com/tmux-plugins/tpm", location: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"}
+  tags: 
+    - draculatmux
+    - never
+
+- name: "Copying Tmux Config"
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/.tmux.conf"
+    dest: "{{ ansible_env.HOME }}"
+  tags: 
+    - draculatmux
+    - never

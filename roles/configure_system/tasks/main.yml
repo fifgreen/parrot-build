@@ -1,0 +1,3 @@
+---
+- name: Configure sudoer
+  ansible.builtin.include_tasks: "configure-sudoers.yml"

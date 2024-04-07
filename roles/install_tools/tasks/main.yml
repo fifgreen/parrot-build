@@ -1,0 +1,15 @@
+---
+- name: Installing APT Packages
+  ansible.builtin.include_tasks: apt-stuff.yml
+
+- name: Installing Kerbrute
+  ansible.builtin.include_tasks: kerbrute.yml
+
+- name: Downloading interesting Github repos
+  ansible.builtin.include_tasks: github-repos.yml
+
+- name: Installing Python tools
+  ansible.builtin.include_tasks: python-tools.yml
+
+- name: Installing tools from Gems
+  ansible.builtin.import_tasks: gem-tools.yml

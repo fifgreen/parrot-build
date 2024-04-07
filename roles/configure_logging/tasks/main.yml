@@ -1,0 +1,6 @@
+---
+- name: Configure ufw
+  ansible.builtin.include_tasks: "ufw.yml"
+
+- name: Configure auditd
+  ansible.builtin.include_tasks: "auditd.yml"

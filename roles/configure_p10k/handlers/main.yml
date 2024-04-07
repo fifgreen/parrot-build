@@ -1,0 +1,7 @@
+---
+# handlers file for configure-tmux
+- name: "update font cache"
+  ansible.builtin.shell: fc-cache -fv
+  tags: 
+    - p10k
+    - never
