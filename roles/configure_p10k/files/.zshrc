@@ -122,8 +122,9 @@ export PATH="$PATH:$GEM_HOME/bin"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #source ~/powerlevel10k/powerlevel10k.zsh-theme
 if [ -x "$(command -v colorls)" ]; then
-    alias ls="colorls"
+    alias ls="colorls -a --sd"
     alias la="colorls -al"
 fi
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
