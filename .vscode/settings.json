@@ -1,7 +1,0 @@
-{
-    "git.ignoreLimitWarning": true,
-    "ansible.python.interpreterPath": "/home/fran/parrot-build/venv/bin/python",
-    "cSpell.words": [
-        "Kerbrute"
-    ]
-}
