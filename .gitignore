@@ -8,3 +8,9 @@ vaultpass
 .vault-pass
 .idea
 venv/*
+.dcignore
+.ansible-lint
+.yamllint
+apt-force-update
+parrot.list
+requirements.txt
