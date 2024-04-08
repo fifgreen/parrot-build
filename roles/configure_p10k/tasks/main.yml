@@ -53,8 +53,8 @@
 
 - name: "Copying Zsh Config"
   ansible.builtin.copy:
-    src: "{{ role_path }}/files/.zshrc"
-    dest: "{{ ansible_env.HOME }}"
+    src: "{{ role_path }}/files/.zshrc.j2"
+    dest: "{{ ansible_env.HOME }}/.zshrc"
   tags: 
     - p10k
     - never
