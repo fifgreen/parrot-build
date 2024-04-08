@@ -1,1 +1,0 @@
- sudo apt-get update -o Aquired::ForceIPv4=True && sudo apt-get upgrade -o Aquired::ForceIPv4=True
